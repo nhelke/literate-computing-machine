@@ -13,7 +13,8 @@ func main() {
 	}
 	now := time.Now()
 	t := now.Add(delay)
-	fmt.Printf("It is %v I will wake and exit at %v in %v\n", now, t, -time.Since(t))
+	fmt.Printf("%v %v: should wake at %v in %v\n", delay, now, t, -time.Since(t))
 	<-time.After(-time.Since(t))
-	fmt.Printf("I was supposed to wake at %v, it is now %v\n", t, time.Now())
+	nownow := time.Now()
+	fmt.Printf("%v %v: did wake with delta %v\n", delay, nownow, nownow.Sub(t))
 }
